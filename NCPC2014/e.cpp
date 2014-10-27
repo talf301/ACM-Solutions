@@ -12,20 +12,22 @@ int main()
 	
 	sort(hs, hs + n);
 	int floor = 0;
+	int back = n-1;
 	int count = 0;
-	if(n < hs[0])
-		count = n;
-	else
 	for(int i = 0; i < n; i++)
 	{
-		if(i + 1 < n && hs[i] == hs[i+1])
+		if(hs[i] == floor)
 			continue;
-		floor = hs[i];
-		if(n-i-1 < hs[i+1] - floor)
-		{
-			count = n-i-1;
+		if(back < i)
 			break;
+		if(hs[back] - floor > back-i+1)
+		{
+			back -= 1;
+			count += 1;
+			i -= 1;
 		}
+		else
+			floor = hs[i];
 	}
 	printf("%d\n", floor + count);	
 	return 0;
