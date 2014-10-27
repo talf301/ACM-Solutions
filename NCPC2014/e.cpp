@@ -11,24 +11,11 @@ int main()
 		scanf("%d", &hs[i]);
 	
 	sort(hs, hs + n);
-	int floor = 0;
-	int back = n-1;
-	int count = 0;
+	int ans = n; 
 	for(int i = 0; i < n; i++)
 	{
-		if(hs[i] == floor)
-			continue;
-		if(back < i)
-			break;
-		if(hs[back] - floor > back-i+1)
-		{
-			back -= 1;
-			count += 1;
-			i -= 1;
-		}
-		else
-			floor = hs[i];
+		ans = min(ans, hs[n-i-1] + i);	
 	}
-	printf("%d\n", floor + count);	
+	printf("%d\n", ans);	
 	return 0;
 }
